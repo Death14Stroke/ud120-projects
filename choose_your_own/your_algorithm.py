@@ -6,6 +6,17 @@ from class_vis import prettyPicture
 
 features_train, labels_train, features_test, labels_test = makeTerrainData()
 
+# TODO: k-means clustering algorithm used
+from sklearn.neighbors import KNeighborsClassifier
+clf = KNeighborsClassifier(n_neighbors=20)
+clf.fit(features_train, labels_train)
+
+pred = clf.predict(features_test)
+
+from sklearn.metrics import accuracy_score
+accuracy = accuracy_score(pred, labels_test)
+print("accuracy = ", round(accuracy, 3))
+
 
 ### the training data (features_train, labels_train) have both "fast" and "slow" points mixed
 ### in together--separate them so we can give them different colors in the scatterplot,
